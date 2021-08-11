@@ -17,7 +17,7 @@ assertEqual(
 
 // abbreviate shortens notes to 20 characters
 noteKeeper = new NoteKeeper();
-let abbreviatedNotes = noteKeeper.abbreviate([
+let abbreviatedNotes = noteKeeper.abbreviateAllNotes([
   'This is my birthday list:',
   'Shopping list: eggs, bread',
   'To do list: learn to code',

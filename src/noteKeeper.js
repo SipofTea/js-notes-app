@@ -7,9 +7,13 @@ class NoteKeeper {
     return this.notes;
   }
 
-  abbreviate(notes) {
+  abbreviate(note) {
+    return note.slice(0, 20);
+  }
+
+  abbreviateAllNotes(notes) {
     let abbrNotes = notes.map((note) => {
-      return note.slice(0, 20);
+      return this.abbreviate(note);
     });
     return abbrNotes;
   }
