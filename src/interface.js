@@ -6,11 +6,6 @@ window.addEventListener('DOMContentLoaded', () => {
     'To do list: learn to code',
   ]);
 
-  // let anchor = document.createElement('a');
-  // anchor.href = '#1';ˆ
-  // anchor.innerText = abbreviatedNotes[0];
-  // document.body.appendChild(anchor);
-
   let section = document.getElementById('notes');
 
   abbreviatedNotes.forEach((item, index) => {
