@@ -1,3 +1,4 @@
+// equal matcher for tests
 let assertEqual = (actual, expected, toCheck) => {
   if (actual == expected) {
     console.log(`Yaay! Pass! ${toCheck}`);
@@ -6,7 +7,7 @@ let assertEqual = (actual, expected, toCheck) => {
   }
 };
 
-// notes will be an instance of Notes class
+// all notes will return an array
 let noteKeeper = new NoteKeeper();
 assertEqual(
   noteKeeper.allNotes.length,
@@ -14,6 +15,7 @@ assertEqual(
   'Notekeeper notes function returns empty array'
 );
 
+// abbreviate shortens notes to 20 characters
 noteKeeper = new NoteKeeper();
 let abbreviatedNotes = noteKeeper.abbreviate([
   'This is my birthday list:',
@@ -23,34 +25,28 @@ let abbreviatedNotes = noteKeeper.abbreviate([
 assertEqual(
   abbreviatedNotes[0],
   'This is my birthday ',
-  'Notekeeper abbreviates notes to 20 characters'
+  'Notekeeper abbreviates first note to 20 characters'
 );
-
 assertEqual(
   abbreviatedNotes[1],
   'Shopping list: eggs,',
-  'Notekeeper abbreviates notes to 20 characters'
+  'Notekeeper abbreviates second note to 20 characters'
 );
-
 assertEqual(
   abbreviatedNotes[2],
   'To do list: learn to',
-  'Notekeeper abbreviates notes to 20 characters'
+  'Notekeeper abbreviates third note to 20 characters'
 );
 
+// create note adds new note to allNotes array
 noteKeeper = new NoteKeeper();
-let createdNote = noteKeeper.createNote('Happy Birthday');
+noteKeeper.createNote('Happy Birthday');
 noteKeeper.createNote('Happy Christmas');
-
 let all = noteKeeper.allNotes();
 
-// assertEqual(createdNote, 'Happy Birthday', 'createNote returns note');
-
 assertEqual(all[0], 'Happy Birthday', 'notes[0] returns first note');
-
 assertEqual(all[1], 'Happy Christmas', 'notes[1] returns second note');
 
-console.log(noteKeeper.allNotes());
 // noteKeeper.shortNotes
 //.abbreviate
 //.emojify
