@@ -5,3 +5,125 @@
 .page-inactive {
   display: none;
 }
+
+* { 
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  font-family: Helvetica;
+  margin: 0px;
+  border: 0px;
+}
+
+header {
+  background-color: cadetblue;
+  height: 10vh;
+  color: aliceblue;
+  font-size: xxx-large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 50px;
+  background-image: url("./background.jpg");
+  background-size: cover;
+}
+
+#note-content {
+  height: 250px;
+  width: 400px;
+  border-radius: 10px;
+  border-color: cadetblue;
+}
+
+#note-creation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#create-note {
+  font-family: Helvetica, sans-serif;
+  color: aliceblue;
+  background-color: cadetblue;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 3px;
+  border: none;
+  width: 200px;
+}
+
+#notes {
+  display: flex;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+.container a { 
+  color: white;
+  height: 150px;
+  width: 200px; 
+  padding: 10px;
+  margin: 10px;
+  background-color: cadetblue;
+  border-radius: 15px;
+  flex-wrap: wrap;
+}
+
+.page-active #note-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#full-note {
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  min-height: 150px;
+  min-width: 200px; 
+  padding: 10px;
+  margin: 10px;
+  background-color: cadetblue;
+  border-radius: 15px;
+  flex-wrap: wrap;
+}
+
+#back-button {
+  font-family: Helvetica, sans-serif;
+  color: aliceblue;
+  background-color: cadetblue;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 3px;
+  border: none;
+  width: 200px;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  color: white;
+  background-color: cadetblue;
+}
+
+footer a {
+  font-size: xx-small;
+}

@@ -10,25 +10,29 @@
   <title>NoteKeeper</title>
 </head>
 <body>
-  <header>Notekeeper</header>
+  <header>NoteKeeper</header>
 
-  <!-- new -->
- 
+  <div class="container"> 
+    <div id="homepage" class="page-active">
+      <section id="create-note-form-wrapper">
+        <form id="note-creation">
+          <textarea type="text" id="note-content"></textarea>
+          <button type="button" id="create-note">Create Note</button>
+        </form>
+      </section>
+      <section id="notes"></section>
+    </div>
 
-  <div id="homepage" class="page-active">
-    <section id="create-note-form-wrapper">
-      <form>
-        <input type="text" id="note-content">
-        <button type="button" id="create-note">Create Note</button>
-      </form>
-    </section>
-    <section id="notes"></section>
-  </div>
+    <div id="note-page" class="page-inactive">
+      <p id="full-note"></p>
+      <button type="button" id="back-button">Back</button>
+    </div>
+  </div>  
 
-  <div id="note-page" class="page-inactive">
-    <button type="button" id="back-button">Back</button>
-    <p id="full-note"></p>
-  </div>
+  <footer>
+    <p>Created by Izzy, Pav, and Else 2021. </p>
+    <a href="https://www.vecteezy.com/free-vector/graphics-background-design">Graphics Background Design Vectors by Vecteezy</a>
+  </footer>
   
 </body>
 </html>
