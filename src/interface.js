@@ -1,80 +1,79 @@
 window.addEventListener('DOMContentLoaded', () => {
   let noteKeeper = new NoteKeeper();
 
-  ////////////NEW
-  document.getElementById('back-button').addEventListener('click', () => {
-    history.pushState('', document.title, 'index.html');
-    singleToAllNotes();
-  });
-
   // create note
   document.getElementById('create-note').addEventListener('click', () => {
-    console.log('CLICK');
     const content = document.querySelector('#note-content').value;
     noteKeeper.createNote(content);
     const shortNote = noteKeeper.abbreviate(content);
     const notes = noteKeeper.allNotes();
     lastNoteIndex = notes.length - 1;
-    let anchor = document.createElement('a');
-    anchor.href = `#${lastNoteIndex}`;
-    anchor.id = `${lastNoteIndex}`;
-    anchor.innerText = shortNote + '\n';
-    section.appendChild(anchor);
+    anchorTagCreation(lastNoteIndex, shortNote);
   });
 
-  // see the full note
+  //create anchor tag element with abbreviated note content
+  const anchorTagCreation = (index, content) => {
+    let anchor = document.createElement('a');
+    anchor.href = `#${index}`;
+    anchor.id = `${index}`;
+    anchor.innerText = content + '\n';
+    section.appendChild(anchor);
+  };
 
+  // switch display to single full note
+  const allToSingleNote = () => {
+    switchDisplay('homepage', 'note-page');
+  };
+
+  // get index of full note
+  const getNoteIndexFromURL = () => {
+      return window.location.hash.split('#')[1];
+    };
+
+  // populate full note element
+  const populateNote = (index) => {
+    notes = noteKeeper.allNotes();
+    fullNote = notes[index];
+    const element = document.getElementById('full-note');
+    element.innerHTML = fullNote;
+  };
+
+  // show full note element
+  const showFullNote = () => {
+    index = getNoteIndexFromURL();
+    populateNote(index);
+    allToSingleNote();
+  };
+
+  // display full note
   const makeURLShowFullNote = () => {
     window.addEventListener('hashchange', showFullNote);
   };
 
-  const getNoteIndexFromURL = (location) => {
-    return window.location.hash.split('#')[1];
-  };
-
-  /////////// NEW BIT//////////
-  const allToSingleNote = () => {
-    document.getElementById('homepage').classList.remove('page-active');
-    document.getElementById('homepage').classList.add('page-inactive');
-    document.getElementById('note-page').classList.remove('page-inactive');
-    document.getElementById('note-page').classList.add('page-active');
-  };
-
+  // switch display to all abbreviated notes
   const singleToAllNotes = () => {
-    document.getElementById('homepage').classList.add('page-active');
-    document.getElementById('homepage').classList.remove('page-inactive');
-    document.getElementById('note-page').classList.add('page-inactive');
-    document.getElementById('note-page').classList.remove('page-active');
+    switchDisplay('note-page', 'homepage');
   };
 
-  const showFullNote = () => {
-    // let pageContent = document.querySelector(".container");
-    // pageContent.remove();
-    index = getNoteIndexFromURL();
-    notes = noteKeeper.allNotes();
-    fullNote = notes[index];
-
-    // newElement = document.createElement('p');
-    // document.body.appendChild(newElement);
-    // newElement.innerHTML = fullNote;
-
-    /////////// NEW BIT//////////
-    const element = document.getElementById('full-note');
-    element.innerHTML = fullNote;
-    allToSingleNote();
-  };
+  // return from single full note to all notes display
+  document.getElementById('back-button').addEventListener('click', () => {
+    history.pushState('', document.title, 'index.html');
+    singleToAllNotes();
+  });
 
   makeURLShowFullNote();
 
   // shows list of abbreviated notes as link
-
   let abbreviatedNotes = noteKeeper.abbreviateAllNotes(noteKeeper.allNotes());
   let section = document.getElementById('notes');
-  abbreviatedNotes.forEach((item, index) => {
-    let anchor = document.createElement('a');
-    anchor.href = `#${index}`;
-    anchor.id = `${index}`;
-    anchor.innerText = item + '\n';
-    section.appendChild(anchor);
+  abbreviatedNotes.forEach((content, index) => {
+    anchorTagCreation(index, content);
   });
+
+  const switchDisplay = (current, future) => {
+    document.getElementById(future).classList.add('page-active');
+    document.getElementById(future).classList.remove('page-inactive');
+    document.getElementById(current).classList.add('page-inactive');
+    document.getElementById(current).classList.remove('page-active');
+  };
 });
