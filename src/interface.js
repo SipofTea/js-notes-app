@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
       const lastNoteIndex = notes.length -1;
       const lastNote = notes[lastNoteIndex]
       const shortNote = noteKeeper.abbreviate(lastNote);
-      localStorage.setItem(lastNoteIndex, content)
+      localStorage.setItem(lastNoteIndex, lastNote)
       anchorTagCreation(lastNoteIndex, shortNote)
     });
 });
