@@ -1,6 +1,6 @@
 class NoteKeeper {
-  constructor() {
-    this.notes = [];
+  constructor(notes = []) {
+    this.notes = notes;
   }
 
   allNotes() {

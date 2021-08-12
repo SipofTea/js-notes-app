@@ -1,6 +1,11 @@
 window.addEventListener('DOMContentLoaded', () => {
-  let noteKeeper = new NoteKeeper();
+  const retrieveNotes = () => {
+    allNotes = localStorage.getItem(notes);
+    return allNotes.split(",");
+  }
   
+  let noteKeeper = new NoteKeeper(notes = retrieveNotes());
+    
   // create note
   document.getElementById('create-note').addEventListener('click', () => {
     const content = document.querySelector('#note-content').value;
@@ -9,7 +14,6 @@ window.addEventListener('DOMContentLoaded', () => {
     const notes = noteKeeper.allNotes();
     lastNoteIndex = notes.length - 1;
     anchorTagCreation(lastNoteIndex, shortNote);
-    //// new /////
     storeNotes();
   });
 
@@ -65,14 +69,8 @@ window.addEventListener('DOMContentLoaded', () => {
     singleToAllNotes();
   });
 
-  ///// saving notes //////
-  const retrieveNotes = () => {
-    allNotes = localStorage.getItem(notes);
-    return allNotes.split(",");
-  }
-
   // shows list of abbreviated notes as link
-  let abbreviatedNotes = noteKeeper.abbreviateAllNotes(retrieveNotes());
+  let abbreviatedNotes = noteKeeper.abbreviateAllNotes(noteKeeper.allNotes());
   let section = document.getElementById('notes');
   abbreviatedNotes.forEach((content, index) => {
     anchorTagCreation(index, content);
