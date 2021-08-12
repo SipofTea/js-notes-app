@@ -6,17 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="./src/noteKeeper.js"></script>
   <script src="./src/interface.js"></script>
+  <link rel="stylesheet" type="text/css" href="./css/stylesheet.css">
   <title>NoteKeeper</title>
 </head>
 <body>
   <header>Notekeeper</header>
-  <section id="create-note-form-wrapper">
-    <form>
-      <input type="text" id="note-content">
-      <button type="button" id="create-note">Create Note</button>
-    </form>
-  </section>
-  <section id="notes"></section>
+
+  <!-- new -->
+ 
+
+  <div id="homepage" class="page-active">
+    <section id="create-note-form-wrapper">
+      <form>
+        <input type="text" id="note-content">
+        <button type="button" id="create-note">Create Note</button>
+      </form>
+    </section>
+    <section id="notes"></section>
+  </div>
+
+  <div id="note-page" class="page-inactive">
+    <button type="button" id="back-button">Back</button>
+    <p id="full-note"></p>
+  </div>
   
 </body>
 </html>
