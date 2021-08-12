@@ -1,6 +1,15 @@
 window.addEventListener('DOMContentLoaded', () => {
+
   let noteKeeper = new NoteKeeper();
 
+  const retrieveNotes = () => {
+    for(let i = 0; i < localStorage.length; i++) {
+      noteKeeper.notes.push(localStorage.getItem(i))
+    }
+  }
+
+  retrieveNotes();
+  
   // create note
 
 
@@ -18,10 +27,10 @@ window.addEventListener('DOMContentLoaded', () => {
       const lastNoteIndex = notes.length -1;
       const lastNote = notes[lastNoteIndex]
       const shortNote = noteKeeper.abbreviate(lastNote);
+      localStorage.setItem(lastNoteIndex, content)
       anchorTagCreation(lastNoteIndex, shortNote)
     });
 });
-
 
   //create anchor tag element with abbreviated note content
   const anchorTagCreation = (index, content) => {
@@ -62,6 +71,8 @@ window.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('hashchange', showFullNote);
   };
 
+  makeURLShowFullNote();
+
   // switch display to all abbreviated notes
   const singleToAllNotes = () => {
     switchDisplay('note-page', 'homepage');
@@ -72,8 +83,6 @@ window.addEventListener('DOMContentLoaded', () => {
     history.pushState('', document.title, 'index.html');
     singleToAllNotes();
   });
-
-  makeURLShowFullNote();
 
   // shows list of abbreviated notes as link
   let abbreviatedNotes = noteKeeper.abbreviateAllNotes(noteKeeper.allNotes());
@@ -89,3 +98,6 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById(current).classList.remove('page-active');
   };
 });
+
+
+
