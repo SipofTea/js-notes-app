@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
   let noteKeeper = new NoteKeeper();
-
+  
   // create note
   document.getElementById('create-note').addEventListener('click', () => {
     const content = document.querySelector('#note-content').value;
@@ -9,6 +9,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const notes = noteKeeper.allNotes();
     lastNoteIndex = notes.length - 1;
     anchorTagCreation(lastNoteIndex, shortNote);
+    //// new /////
+    storeNotes();
   });
 
   //create anchor tag element with abbreviated note content
@@ -50,6 +52,8 @@ window.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('hashchange', showFullNote);
   };
 
+  makeURLShowFullNote();
+
   // switch display to all abbreviated notes
   const singleToAllNotes = () => {
     switchDisplay('note-page', 'homepage');
@@ -61,14 +65,24 @@ window.addEventListener('DOMContentLoaded', () => {
     singleToAllNotes();
   });
 
-  makeURLShowFullNote();
+  ///// saving notes //////
+  const retrieveNotes = () => {
+    allNotes = localStorage.getItem(notes);
+    return allNotes.split(",");
+  }
 
   // shows list of abbreviated notes as link
-  let abbreviatedNotes = noteKeeper.abbreviateAllNotes(noteKeeper.allNotes());
+  let abbreviatedNotes = noteKeeper.abbreviateAllNotes(retrieveNotes());
   let section = document.getElementById('notes');
   abbreviatedNotes.forEach((content, index) => {
     anchorTagCreation(index, content);
   });
+
+  //store notes
+  const storeNotes = () => {
+    noteArray = noteKeeper.allNotes();
+    localStorage.setItem(notes, noteArray);
+  }; 
 
   const switchDisplay = (current, future) => {
     document.getElementById(future).classList.add('page-active');
