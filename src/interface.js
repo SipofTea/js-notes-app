@@ -1,11 +1,15 @@
 window.addEventListener('DOMContentLoaded', () => {
+
+  let noteKeeper = new NoteKeeper();
+
   const retrieveNotes = () => {
-    allNotes = localStorage.getItem(notes);
-    return allNotes.split(",");
+    for(let i = 0; i < localStorage.length; i++) {
+      noteKeeper.notes.push(localStorage.getItem(i))
+    }
   }
+
+  retrieveNotes();
   
-  let noteKeeper = new NoteKeeper(notes = retrieveNotes());
-    
   // create note
   document.getElementById('create-note').addEventListener('click', () => {
     const content = document.querySelector('#note-content').value;
@@ -13,8 +17,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const shortNote = noteKeeper.abbreviate(content);
     const notes = noteKeeper.allNotes();
     lastNoteIndex = notes.length - 1;
+    localStorage.setItem(lastNoteIndex, content)
     anchorTagCreation(lastNoteIndex, shortNote);
-    storeNotes();
   });
 
   //create anchor tag element with abbreviated note content
@@ -76,12 +80,6 @@ window.addEventListener('DOMContentLoaded', () => {
     anchorTagCreation(index, content);
   });
 
-  //store notes
-  const storeNotes = () => {
-    noteArray = noteKeeper.allNotes();
-    localStorage.setItem(notes, noteArray);
-  }; 
-
   const switchDisplay = (current, future) => {
     document.getElementById(future).classList.add('page-active');
     document.getElementById(future).classList.remove('page-inactive');
@@ -89,3 +87,6 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById(current).classList.remove('page-active');
   };
 });
+
+
+
