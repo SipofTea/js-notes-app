@@ -11,15 +11,26 @@ window.addEventListener('DOMContentLoaded', () => {
   retrieveNotes();
   
   // create note
+
+
   document.getElementById('create-note').addEventListener('click', () => {
     const content = document.querySelector('#note-content').value;
-    noteKeeper.createNote(content);
-    const shortNote = noteKeeper.abbreviate(content);
-    const notes = noteKeeper.allNotes();
-    lastNoteIndex = notes.length - 1;
-    localStorage.setItem(lastNoteIndex, content)
-    anchorTagCreation(lastNoteIndex, shortNote);
-  });
+    fetch('https://makers-emojify.herokuapp.com/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({text: content})
+    }).then(response => {
+      return response.json()
+    }).then((data) => {
+      noteKeeper.createNote(data.emojified_text); 
+      const notes = noteKeeper.allNotes();
+      const lastNoteIndex = notes.length -1;
+      const lastNote = notes[lastNoteIndex]
+      const shortNote = noteKeeper.abbreviate(lastNote);
+      localStorage.setItem(lastNoteIndex, content)
+      anchorTagCreation(lastNoteIndex, shortNote)
+    });
+});
 
   //create anchor tag element with abbreviated note content
   const anchorTagCreation = (index, content) => {
