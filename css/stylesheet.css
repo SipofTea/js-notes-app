@@ -20,6 +20,7 @@ body {
   background-repeat: space;
   background-size: cover;
   background-attachment: fixed;
+  overscroll-behavior: none;
 }
 
 header {
