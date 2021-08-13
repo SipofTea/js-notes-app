@@ -59,9 +59,11 @@ window.addEventListener('DOMContentLoaded', () => {
   const populateNote = (index) => {
     notes = noteKeeper.allNotes();
     fullNote = notes[index];
+    noteWithBreaks = fullNote.replace(/(?:\r\n|\r|\n)/g, '<br>');
     const element = document.getElementById('full-note');
-    element.innerHTML = fullNote;
+    element.innerHTML = noteWithBreaks;
   };
+  
 
   // show full note element
   const showFullNote = () => {
