@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
   retrieveNotes();
 
   // create note
-  document.getElementById('create-note').addEventListener('click', () => {
+  document.getElementById('create-note').addEventListener('submit', () => {
     const content = document.querySelector('#note-content').value;
     fetch('https://makers-emojify.herokuapp.com/', {
       method: 'POST',

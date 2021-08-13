@@ -37,7 +37,9 @@ header {
   flex-direction: column;
   padding: 50px;
   background-image: url('./background.jpg');
+  background-repeat: space;
   background-size: cover;
+  
 }
 
 #note-content {
