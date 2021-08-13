@@ -36,10 +36,9 @@ header {
   justify-content: flex-start;
   flex-direction: column;
   padding: 50px;
-  background-image: url('./background.jpg');
+  background-image: url('../images/background.jpg');
   background-repeat: space;
   background-size: cover;
-  
 }
 
 #note-content {
