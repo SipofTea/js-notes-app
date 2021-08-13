@@ -6,7 +6,7 @@
   display: none;
 }
 
-* { 
+* {
   box-sizing: border-box;
 }
 
@@ -36,7 +36,7 @@ header {
   justify-content: flex-start;
   flex-direction: column;
   padding: 50px;
-  background-image: url("./background.jpg");
+  background-image: url('./background.jpg');
   background-size: cover;
 }
 
@@ -45,6 +45,11 @@ header {
   width: 400px;
   border-radius: 10px;
   border-color: cadetblue;
+  font-family: Helvetica;
+}
+
+#note-content:focus {
+  outline: none;
 }
 
 #note-creation {
@@ -62,6 +67,18 @@ header {
   border-radius: 3px;
   border: none;
   width: 200px;
+  box-shadow: 3px 3px 5px grey;
+  cursor: pointer;
+}
+
+#create-note:hover {
+  background-color: rgb(51, 110, 112);
+}
+
+#create-note:active {
+  background-color: rgb(51, 110, 112);
+  box-shadow: 1px 1px rgb(58, 58, 58);
+  transform: translateY(2px);
 }
 
 #notes {
@@ -70,15 +87,20 @@ header {
   flex-wrap: wrap;
 }
 
-.container a { 
+.container a {
   color: white;
   height: 150px;
-  width: 200px; 
+  width: 200px;
   padding: 10px;
   margin: 10px;
   background-color: cadetblue;
   border-radius: 15px;
   flex-wrap: wrap;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .page-active #note-page {
@@ -93,7 +115,7 @@ header {
   width: fit-content;
   height: fit-content;
   min-height: 150px;
-  min-width: 200px; 
+  min-width: 200px;
   padding: 10px;
   margin: 10px;
   background-color: cadetblue;
@@ -106,10 +128,22 @@ header {
   color: aliceblue;
   background-color: cadetblue;
   padding: 5px;
-  margin: 5px;
+  margin: 10px;
   border-radius: 3px;
   border: none;
   width: 200px;
+  box-shadow: 3px 3px 5px grey;
+  cursor: pointer;
+}
+
+#back-button:hover {
+  background-color: rgb(51, 110, 112);
+}
+
+#back-button:active {
+  background-color: rgb(51, 110, 112);
+  box-shadow: 1px 1px rgb(58, 58, 58);
+  transform: translateY(2px);
 }
 
 footer {

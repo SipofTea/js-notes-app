@@ -1,34 +1,35 @@
 window.addEventListener('DOMContentLoaded', () => {
-
   let noteKeeper = new NoteKeeper();
 
   const retrieveNotes = () => {
-    for(let i = 0; i < localStorage.length; i++) {
-      noteKeeper.notes.push(localStorage.getItem(i))
+    for (let i = 0; i < localStorage.length; i++) {
+      noteKeeper.notes.push(localStorage.getItem(i));
     }
-  }
+  };
 
   retrieveNotes();
-  
+
   // create note
   document.getElementById('create-note').addEventListener('click', () => {
     const content = document.querySelector('#note-content').value;
     fetch('https://makers-emojify.herokuapp.com/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({text: content})
-    }).then(response => {
-      return response.json()
-    }).then((data) => {
-      noteKeeper.createNote(data.emojified_text); 
-      const notes = noteKeeper.allNotes();
-      const lastNoteIndex = notes.length -1;
-      const lastNote = notes[lastNoteIndex]
-      const shortNote = noteKeeper.abbreviate(lastNote);
-      localStorage.setItem(lastNoteIndex, lastNote)
-      anchorTagCreation(lastNoteIndex, shortNote)
-    });
-});
+      body: JSON.stringify({ text: content }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        noteKeeper.createNote(data.emojified_text);
+        const notes = noteKeeper.allNotes();
+        const lastNoteIndex = notes.length - 1;
+        const lastNote = notes[lastNoteIndex];
+        const shortNote = noteKeeper.abbreviate(lastNote);
+        localStorage.setItem(lastNoteIndex, lastNote);
+        anchorTagCreation(lastNoteIndex, shortNote);
+      });
+  });
 
   //create anchor tag element with abbreviated note content
   const anchorTagCreation = (index, content) => {
@@ -46,8 +47,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // get index of full note
   const getNoteIndexFromURL = () => {
-      return window.location.hash.split('#')[1];
-    };
+    return window.location.hash.split('#')[1];
+  };
 
   // populate full note element
   const populateNote = (index) => {
@@ -96,6 +97,3 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById(current).classList.remove('page-active');
   };
 });
-
-
-
