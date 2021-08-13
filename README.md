@@ -3,6 +3,7 @@ With this static webpage you will be able to create and view notes in the browse
 
 ## Instructions
 Visit https://dramatic-flavor.surge.sh/ to keep notes.
+
 To run tests run `open specRunner.html` in the console.
 
 ## Specification (🔴 TODO, 🟢 Complete)
@@ -12,6 +13,7 @@ To run tests run `open specRunner.html` in the console.
 * Display emoji's in notes 🟢
 * Persist notes between sessions 🟢
 * Edit notes 🔴
+* Delete notes 🔴
 * Deploy webpage 🟢
 
 ## User stories
