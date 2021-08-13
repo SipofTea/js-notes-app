@@ -10,8 +10,9 @@ window.addEventListener('DOMContentLoaded', () => {
   retrieveNotes();
 
   // create note
-  document.getElementById('create-note').addEventListener('submit', () => {
+  document.getElementById('create-note').addEventListener('click', () => {
     const content = document.querySelector('#note-content').value;
+    if (content != "") {
     fetch('https://makers-emojify.herokuapp.com/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -29,7 +30,11 @@ window.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem(lastNoteIndex, lastNote);
         anchorTagCreation(lastNoteIndex, shortNote);
       });
+    };
+    const contentToClear = document.querySelector('#note-content');
+    contentToClear.value = '';
   });
+  
 
   //create anchor tag element with abbreviated note content
   const anchorTagCreation = (index, content) => {
