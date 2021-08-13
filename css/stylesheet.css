@@ -94,8 +94,8 @@ header {
 
 .container a {
   color: white;
-  height: 150px;
-  width: 200px;
+  min-height: 100px;
+  min-width: 250px;
   padding: 10px;
   margin: 10px;
   background-color: cadetblue;
